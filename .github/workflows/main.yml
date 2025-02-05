@@ -55,7 +55,22 @@ jobs:
          uses: actions/setup-dotnet@v4
          with:
           dotnet-version: 9.0.x
-        
+
+       - name: Restore dependencies
+         run: dotnet restore
+       - name: Build
+         run: dotnet build --no-restore
+       
+       - name: Build frontend
+         working-directory: ./shoppinglist-frontend
+         run: npm install
+       - name: Build frontend
+         working-directory: ./shoppinglist-frontend
+         run: npm run build
+       
+       - name: dotnet publish
+         working-directory: ./
+         run: dotnet publish -c Release -o ./publish
        # // TODO: kopier over steg fra Oppgave 1
       
        - name: copy frontend to wwwroot
