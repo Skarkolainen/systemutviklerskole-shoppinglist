@@ -43,7 +43,8 @@ jobs:
       
       - name: Set storage account envVar
         run: |
-          // TODO: sette EnvVar ConnectionStrings__AzureStorage til connection string
+           az webapp config appsettings set --resource-group ${{ env.RESOURCE_GROUP }} --name ${{ env.AZURE_WEBAPP_NAME }} --settings ConnectionStrings__AzureStorage="${{ secrets.STORAGEACCOUNTCONNECTIONSTRING }}"
+          # // TODO: sette EnvVar ConnectionStrings__AzureStorage til connection string
 
   build:
     runs-on: windows-latest
